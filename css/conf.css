@@ -1,0 +1,45 @@
+﻿.conforto-page .hero {
+    background-image: url('../img/banner_conforto.png');
+    background-position: center center;
+    background-size: cover;
+}
+
+.comfort-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.comfort-card {
+    background: linear-gradient(165deg, #fff, #f4f7fb);
+    border: 1px solid #e7e9f0;
+    border-radius: 12px;
+    padding: 1.1rem;
+    text-align: center;
+    box-shadow: 0 8px 18px rgba(11, 31, 58, 0.1);
+}
+
+.comfort-card i {
+    color: #c9a13a;
+    font-size: 1.7rem;
+    margin-bottom: 0.55rem;
+}
+
+.comfort-card h3 {
+    color: #0b1f3a;
+    margin-bottom: 0.3rem;
+}
+
+.comfort-card p {
+    color: #5c6574;
+    font-size: 0.92rem;
+}
+
+.notice-box {
+    margin-top: 1rem;
+    background: #eef4ff;
+    border-left: 4px solid #12335f;
+    border-radius: 10px;
+    padding: 0.95rem;
+    color: #33435c;
+}
