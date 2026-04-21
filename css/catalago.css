@@ -15,43 +15,50 @@
 
 .catalog-sections {
     display: grid;
-    gap: 1.2rem;
+    gap: 1.5rem;
 }
 
 .catalog-block {
     border: 1px solid #ece6d7;
-    border-radius: 12px;
-    padding: 1.2rem;
+    border-radius: 14px;
+    padding: 1.4rem;
     background: linear-gradient(180deg, #ffffff, #f8f4ea);
 }
 
 .catalog-block h3 {
     font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 0.8px;
+    letter-spacing: 1px;
     color: #0b1f3a;
-    font-size: 1.65rem;
-    margin-bottom: 0.7rem;
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #c9a13a;
+    display: inline-block;
 }
 
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 0.9rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
 }
 
 .catalog-card {
     background: #fff;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 0.9rem;
     box-shadow: 0 8px 18px rgba(11, 31, 58, 0.12);
+    display: flex;
+    flex-direction: column;
 }
 
 .catalog-card img {
     width: 100%;
-    height: 170px;
+    height: 220px;
     object-fit: cover;
+    object-position: center top;
     border-radius: 8px;
     margin-bottom: 0.75rem;
+    flex-shrink: 0;
 }
 
 .catalog-card h4 {
@@ -63,9 +70,38 @@
     color: #5c6574;
     margin-bottom: 0.8rem;
     font-size: 0.92rem;
+    flex: 1;
 }
 
-.catalog-card .btn {
-    width: 100%;
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.card-actions .btn {
+    flex: 1;
     justify-content: center;
+    font-size: 0.82rem;
+    padding: 0.65rem 0.5rem;
+}
+
+.catalog-card .card-preco {
+    display: inline-block;
+    background: #c9a13a;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.87rem;
+    padding: 0.18rem 0.6rem;
+    border-radius: 6px;
+    margin-bottom: 0.55rem;
+}
+
+@media (max-width: 600px) {
+    .catalog-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+    .catalog-card img {
+        height: 160px;
+    }
 }

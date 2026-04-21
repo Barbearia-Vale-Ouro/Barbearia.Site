@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Barbearia Vale Ouro | Painel Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="login-body">
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-logo">
+                <img src="img/interno/logo.png.png" alt="Logo Barbearia Vale Ouro">
+                <h1>VALE OURO</h1>
+                <p>Painel Administrativo</p>
+            </div>
+
+            <form id="loginForm" novalidate autocomplete="off">
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i> Usuário</label>
+                    <input type="text" id="username" name="username"
+                        placeholder="Digite o usuário"
+                        autocomplete="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Senha</label>
+                    <div class="password-wrap">
+                        <input type="password" id="password" name="password"
+                            placeholder="Digite a senha"
+                            autocomplete="current-password" required>
+                        <button type="button" id="togglePass" aria-label="Mostrar senha">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="loginError" class="login-error" hidden>
+                    <i class="fas fa-exclamation-triangle"></i> <span id="loginErrorMsg">Usuário ou senha incorretos.</span>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Entrar
+                </button>
+            </form>
+
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Voltar ao site
+            </a>
+        </div>
+    </div>
+
+    <script src="script/admin-auth.js"></script>
+    <script>
+        // Login form handler (async — usa API REST + JWT)
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value;
+            const err  = document.getElementById('loginError');
+            const msg  = document.getElementById('loginErrorMsg');
+            const btn  = this.querySelector('.btn-login');
+
+            err.hidden   = true;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Entrando...';
+
+            const result = await AdminAuth.login(user, pass);
+
+            if (result.success) {
+                window.location.href = 'admin.html';
+            } else {
+                msg.textContent = result.error || 'Usuário ou senha incorretos.';
+                err.hidden = false;
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Entrar';
+            }
+        });
+
+        // Toggle visibilidade da senha
+        document.getElementById('togglePass').addEventListener('click', function() {
+            const inp = document.getElementById('password');
+            const icon = this.querySelector('i');
+            if (inp.type === 'password') {
+                inp.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                inp.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        });
+
+        // Já autenticado? Ir direto para o painel
+        if (AdminAuth.isLoggedIn()) {
+            window.location.href = 'admin.html';
+        }
+    </script>
+</body>
+</html>

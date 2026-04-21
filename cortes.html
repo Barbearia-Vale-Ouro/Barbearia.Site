@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,10 @@
     <meta property="og:url" content="https://barbeariavaleouro.com.br/cortes.html">
     <meta name="twitter:card" content="summary_large_image">
     <title>Barbearia Vale Ouro | Cortes</title>
+    <meta name="theme-color" content="#0b1f3a">
+    <link rel="icon" type="image/svg+xml" href="img/interno/Logo_Barbearia.svg">
+    <link rel="shortcut icon" href="img/interno/logo.png.png" type="image/png">
+    <link rel="canonical" href="https://barbeariavaleouro.com.br/cortes.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,6 +41,7 @@
     }
     </script>
     <script src="script/script.js" defer></script>
+    <script src="script/catalog-loader.js" defer></script>
 </head>
 <body class="catalog-page cortes-page">
     <header>
@@ -50,11 +55,12 @@
                 <li><a href="index.html"><i class="fas fa-house"></i> Início</a></li>
                 <li><a href="cortes.html"><i class="fas fa-scissors"></i> Cortes</a></li>
                 <li><a href="servicos.html"><i class="fas fa-user-gear"></i> Serviços</a></li>
+                <li><a href="barbeiros.html"><i class="fas fa-user-tie"></i> Profissionais</a></li>
                 <li><a href="produtos.html"><i class="fas fa-bag-shopping"></i> Produtos</a></li>
                 <li><a href="conforto.html"><i class="fas fa-mug-hot"></i> Conforto</a></li>
                 <li><a class="whatsapp-link" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20na%20Vale%20Ouro" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu">
+            <div class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -70,84 +76,7 @@
     </section>
 
     <main>
-        <section class="section catalog-sections">
-            <div class="catalog-block">
-                <h3>CORTES</h3>
-                <div class="catalog-grid">
-                    <article class="catalog-card">
-                        <img src="img/servicos/corte.jpeg" alt="Corte clássico masculino">
-                        <h4>Corte Clássico</h4>
-                        <p>Visual tradicional com acabamento limpo para rotina e eventos.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Corte%20Clássico" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                    <article class="catalog-card">
-                        <img src="img/servicos/WhatsApp Image 2025-11-21 at 11.46.20 (1).jpeg" alt="Corte com degradê">
-                        <h4>Degradê Moderno</h4>
-                        <p>Transição suave e estilosa com foco em definição e personalidade.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Degradê%20Moderno" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                    <article class="catalog-card">
-                        <img src="img/servicos/WhatsApp Image 2026-03-22 at 22.18.53.jpeg" alt="Corte social masculino">
-                        <h4>Corte Social</h4>
-                        <p>Acabamento alinhado e discreto para trabalho, eventos e rotina.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Corte%20Social" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                    <article class="catalog-card">
-                        <img src="img/servicos/WhatsApp Image 2026-03-22 at 22.18.53 (1).jpeg" alt="Corte com acabamento lateral">
-                        <h4>Low Fade</h4>
-                        <p>Degradê baixo com desenho limpo para um visual elegante e atual.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Low%20Fade" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                    <article class="catalog-card">
-                        <img src="img/servicos/WhatsApp Image 2026-03-22 at 22.18.54.jpeg" alt="Corte com topo texturizado">
-                        <h4>Topo Texturizado</h4>
-                        <p>Estrutura moderna com volume controlado e finalização natural.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Topo%20Texturizado" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                    <article class="catalog-card">
-                        <img src="img/servicos/WhatsApp Image 2026-03-22 at 22.18.54 (1).jpeg" alt="Corte degradê masculino detalhado">
-                        <h4>Mid Fade</h4>
-                        <p>Equilíbrio entre clássico e moderno com transição marcada e precisa.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Mid%20Fade" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                    <article class="catalog-card">
-                        <img src="img/servicos/WhatsApp Image 2026-03-22 at 22.18.54 (2).jpeg" alt="Corte masculino moderno com acabamento premium">
-                        <h4>Acabamento Premium</h4>
-                        <p>Corte com atenção máxima aos detalhes para realçar seu estilo.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Acabamento%20Premium" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                </div>
-            </div>
-
-            <div class="catalog-block">
-                <h3>MAIS ESTILOS</h3>
-                <div class="catalog-grid">
-                    <article class="catalog-card">
-                        <img src="img/servicos/WhatsApp Image 2026-03-22 at 22.18.54 (3).jpeg" alt="Corte masculino com linhas definidas">
-                        <h4>Estilo Definido</h4>
-                        <p>Linhas marcadas e visual firme para quem busca presença no corte.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Estilo%20Definido" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                    <article class="catalog-card">
-                        <img src="img/servicos/WhatsApp Image 2026-03-22 at 22.18.55.jpeg" alt="Corte com finalização moderna">
-                        <h4>Visual Atual</h4>
-                        <p>Perfeito para quem quer um corte versátil com leitura contemporânea.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Visual%20Atual" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                    <article class="catalog-card">
-                        <img src="img/servicos/WhatsApp Image 2026-03-22 at 22.18.55 (1).jpeg" alt="Corte masculino com degradê limpo">
-                        <h4>Fade Limpo</h4>
-                        <p>Transição precisa e desenho limpo para manter o visual impecável.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Fade%20Limpo" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                    <article class="catalog-card">
-                        <img src="img/servicos/WhatsApp Image 2026-03-22 at 22.18.55 (2).jpeg" alt="Corte com volume e laterais baixas">
-                        <h4>Volume Controlado</h4>
-                        <p>Topo valorizado com laterais equilibradas para um visual sofisticado.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20Volume%20Controlado" target="_blank" rel="noopener">Agendar no WhatsApp</a>
-                    </article>
-                </div>
-            </div>
+        <section id="catalog-sections" class="section catalog-sections">
         </section>
     </main>
 
@@ -170,13 +99,14 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <span id="current-year">2026</span> Barbearia Vale Ouro. Todos os direitos reservados.</p>
+            <p>&copy; <span id="current-year">2026</span> Barbearia Vale Ouro. Todos os direitos reservados.
+              <a href="admin-login.html" class="admin-site-link" title="Painel Administrativo" rel="noopener"><i class="fas fa-lock"></i> Admin</a>
+            </p>
             <button onclick="scrollToTop()" class="btn back-to-top"><i class="fas fa-arrow-up"></i> Topo</button>
         </div>
     </footer>
 
     <a class="whatsapp-float" href="https://wa.me/5512991898466?text=Olá%2C%20vim%20pela%20página%20de%20cortes%20e%20quero%20agendar" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
         <i class="fab fa-whatsapp"></i>
-    </a>
-</body>
+    </a></body>
 </html>

@@ -1,0 +1,18 @@
+# Dependências Node
+node_modules/
+
+# Variáveis de ambiente (nunca commitar)
+.env
+
+# Imagens enviadas pelo admin (armazenamento no servidor)
+img/admin-uploads/cortes/*
+img/admin-uploads/servicos/*
+img/admin-uploads/produtos/*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db

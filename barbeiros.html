@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça os profissionais da Barbearia Vale Ouro em Guaratinguetá. Barbeiros especializados em cortes masculinos e serviços premium.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Barbearia Vale Ouro | Profissionais">
+    <meta property="og:description" content="Conheça nossa equipe de barbeiros especializados em Guaratinguetá.">
+    <meta property="og:image" content="img/interno/logo.png.png">
+    <meta property="og:url" content="https://barbeariavaleouro.com.br/barbeiros.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Barbearia Vale Ouro | Profissionais</title>
+    <meta name="theme-color" content="#0b1f3a">
+    <link rel="icon" type="image/svg+xml" href="img/interno/Logo_Barbearia.svg">
+    <link rel="shortcut icon" href="img/interno/logo.png.png" type="image/png">
+    <link rel="canonical" href="https://barbeariavaleouro.com.br/barbeiros.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Barbershop",
+        "name": "Barbearia Vale Ouro",
+        "telephone": "+55 12 99189-8466",
+        "image": "img/interno/logo.png.png",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. João Pessoa, 284 - Pedregulho",
+            "addressLocality": "Guaratinguetá",
+            "addressRegion": "SP",
+            "postalCode": "12515-010",
+            "addressCountry": "BR"
+        },
+        "areaServed": "Guaratinguetá",
+        "url": "https://barbeariavaleouro.com.br/barbeiros.html",
+        "sameAs": [
+            "https://instagram.com/barbeariavaleouro",
+            "https://wa.me/5512991898466"
+        ]
+    }
+    </script>
+    <script src="script/script.js" defer></script>
+</head>
+<body class="catalog-page">
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html" aria-label="Voltar para o início">
+                    <img src="img/interno/logo.png.png" alt="Logo da Barbearia Vale Ouro">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-house"></i> Início</a></li>
+                <li><a href="cortes.html"><i class="fas fa-scissors"></i> Cortes</a></li>
+                <li><a href="servicos.html"><i class="fas fa-user-gear"></i> Serviços</a></li>
+                <li><a href="barbeiros.html" class="active"><i class="fas fa-user-tie"></i> Profissionais</a></li>
+                <li><a href="produtos.html"><i class="fas fa-bag-shopping"></i> Produtos</a></li>
+                <li><a href="conforto.html"><i class="fas fa-mug-hot"></i> Conforto</a></li>
+                <li><a class="whatsapp-link" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20um%20horário%20na%20Barbearia%20Vale%20Ouro" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section reveal">
+            <h2 class="section-title">Nossos Profissionais</h2>
+            <p class="section-subtitle">Conheça os barbeiros que criam o estilo da Barbearia Vale Ouro.</p>
+            <div class="profile-tabs">
+                <button class="profile-tab active" data-panel="profissionais">Barbeiros</button>
+                <button class="profile-tab" data-panel="equipe">Equipe</button>
+            </div>
+            <div class="profile-panels">
+                <div class="profile-panel active" data-panel="profissionais">
+                    <div class="team-grid" id="teamGrid">
+                        <div class="team-loading">Carregando profissionais...</div>
+                    </div>
+                </div>
+                <div class="profile-panel" data-panel="equipe">
+                    <div class="team-copy">
+                        <p>Os barbeiros da Vale Ouro são especializados em cortes masculinos, barba e acabamento premium.</p>
+                        <p>Cada profissional traz técnica, atitude e estilo para entregar um resultado único.</p>
+                        <p>Use o painel administrativo para cadastrar fotos, nomes e descrições de cada barbeiro.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section promo-callout">
+            <h2 class="section-title">AGENDAR COM SEU BARBEIRO PREFERIDO</h2>
+            <p class="section-subtitle">Escolha o profissional e fale direto no WhatsApp para agendar.</p>
+            <a class="btn btn-offer promo-button" href="https://wa.me/5512991898466?text=Olá%2C%20vim%20pelo%20site%20da%20Barbearia%20Vale%20Ouro%20e%20quero%20agendar%20com%20um%20barbeiro%20específico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Agendar Agora</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-wrap">
+            <div>
+                <h4>Barbearia Vale Ouro</h4>
+                <p>Av. João Pessoa, 284 - Pedregulho<br>Guaratinguetá - SP | CEP: 12515-010</p>
+                <p><a href="tel:+5512991898466">+55 12 99189-8466</a></p>
+            </div>
+            <div>
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="cortes.html">Cortes</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="barbeiros.html">Profissionais</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="conforto.html">Conforto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Redes Sociais</h4>
+                <div class="footer-social">
+                    <a href="https://instagram.com/barbeariavaleouro" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5512991898466" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year">2026</span> Barbearia Vale Ouro. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

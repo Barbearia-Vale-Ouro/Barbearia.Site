@@ -13,6 +13,10 @@
     <meta property="og:url" content="https://barbeariavaleouro.com.br/">
     <meta name="twitter:card" content="summary_large_image">
     <title>Barbearia Vale Ouro | Início</title>
+    <meta name="theme-color" content="#0b1f3a">
+    <link rel="icon" type="image/svg+xml" href="img/interno/Logo_Barbearia.svg">
+    <link rel="shortcut icon" href="img/interno/logo.png.png" type="image/png">
+    <link rel="canonical" href="https://barbeariavaleouro.com.br/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -42,6 +46,7 @@
         }
         </script>
     <script src="script/script.js" defer></script>
+    <script src="script/promo-loader.js" defer></script>
 </head>
 <body class="home-page">
     <header>
@@ -55,11 +60,12 @@
                 <li><a href="index.html"><i class="fas fa-house"></i> Início</a></li>
                 <li><a href="cortes.html"><i class="fas fa-scissors"></i> Cortes</a></li>
                 <li><a href="servicos.html"><i class="fas fa-user-gear"></i> Serviços</a></li>
+                <li><a href="barbeiros.html"><i class="fas fa-user-tie"></i> Profissionais</a></li>
                 <li><a href="produtos.html"><i class="fas fa-bag-shopping"></i> Produtos</a></li>
                 <li><a href="conforto.html"><i class="fas fa-mug-hot"></i> Conforto</a></li>
                 <li><a class="whatsapp-link" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20um%20horário%20na%20Barbearia%20Vale%20Ouro" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu">
+            <div class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -102,7 +108,30 @@
                     <a class="btn btn-outline" href="https://wa.me/5512991898466?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Tirar Dúvidas</a>
                 </div>
                 <div>
-                    <img src="img/externo/entrada.jpg" alt="Equipe da Barbearia Vale Ouro" style="border-radius: 12px; box-shadow: var(--shadow-card);">
+                    <img src="img/externo/entrada.jpg" alt="Equipe da Barbearia Vale Ouro" class="about-img" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="section reveal reveal-delay-2" id="profissionais-section">
+            <h2 class="section-title">Profissionais</h2>
+            <p class="section-subtitle">Conheça os barbeiros que criam o estilo da Barbearia Vale Ouro.</p>
+            <div class="profile-tabs">
+                <button class="profile-tab active" data-panel="profissionais">Barbeiros</button>
+                <button class="profile-tab" data-panel="equipe">Equipe</button>
+            </div>
+            <div class="profile-panels">
+                <div class="profile-panel active" data-panel="profissionais">
+                    <div class="team-grid" id="teamGrid">
+                        <div class="team-loading">Carregando profissionais...</div>
+                    </div>
+                </div>
+                <div class="profile-panel" data-panel="equipe">
+                    <div class="team-copy">
+                        <p>Os barbeiros da Vale Ouro são especializados em cortes masculinos, barba e acabamento premium.</p>
+                        <p>Cada profissional traz técnica, atitude e estilo para entregar um resultado único.</p>
+                        <p>Use o painel administrativo para cadastrar fotos, nomes e descrições de cada barbeiro.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -113,21 +142,21 @@
             <div class="cards-grid">
                 <article class="card">
                     <span class="badge"><i class="fas fa-scissors"></i> Cortes e Serviços</span>
-                    <img src="img/servicos/corte.jpeg" alt="Corte masculino profissional">
+                    <img src="img/servicos/corte.jpeg" alt="Corte masculino profissional" loading="lazy">
                     <h3>Cortes Masculinos</h3>
                     <p>Opções clássicas e modernas com acabamento técnico para diferentes estilos.</p>
                     <a class="btn btn-primary" href="cortes.html">Ver Cortes</a>
                 </article>
                 <article class="card">
                     <span class="badge"><i class="fas fa-user-gear"></i> Serviços Premium</span>
-                    <img src="img/servicos/barba.jpeg" alt="Serviços profissionais">
+                    <img src="img/servicos/barba.jpeg" alt="Serviços profissionais" loading="lazy">
                     <h3>Serviços Especializados</h3>
                     <p>Barba, sobrancelha e cuidados premium para completar seu visual.</p>
                     <a class="btn btn-primary" href="servicos.html">Ver Serviços</a>
                 </article>
                 <article class="card">
                     <span class="badge"><i class="fas fa-flask"></i> Linha de Produtos</span>
-                    <img src="img/produto/CONDICIONADOR.jpg" alt="Produtos para cuidados masculinos">
+                    <img src="img/produto/CONDICIONADOR.jpg" alt="Produtos para cuidados masculinos" loading="lazy">
                     <h3>Produtos Profissionais</h3>
                     <p>Shampoo, modeladores e itens de barba com orientação personalizada.</p>
                     <a class="btn btn-primary" href="produtos.html">Ver Produtos</a>
@@ -160,13 +189,53 @@
             </div>
         </section>
 
+        <section class="section" id="promocoes-section">
+            <h2 class="section-title"><i class="fas fa-tag"></i> PROMOÇÕES</h2>
+            <p class="section-subtitle">Ofertas e condições especiais da Barbearia Vale Ouro.</p>
+            <div class="promo-grid" id="promo-grid"></div>
+        </section>
+
         <section class="section map" id="localizacao">
             <h2 class="section-title">LOCALIZAÇÃO</h2>
             <p class="section-subtitle">Av. João Pessoa, 284 - Pedregulho, Guaratinguetá - SP</p>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3677.8133948235336!2d-45.198750424866056!3d-22.80937737932375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccc5d038ab827b%3A0x45e2b383e68300ab!2sBarbearia%20Vale%20Ouro%20Guaratinguet%C3%A1!5e0!3m2!1spt-BR!2sbr!4v1764530983083!5m2!1spt-BR!2sbr" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa Barbearia Vale Ouro"></iframe>
-            <div style="margin-top: 1rem;">
+            <div class="mt-1">
                 <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20atendimento%20na%20unidade%20da%20Av.%20João%20Pessoa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar com a Barbearia</a>
             </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="section newsletter-section" id="newsletter">
+            <h2 class="section-title"><i class="fas fa-envelope"></i> FIQUE POR DENTRO</h2>
+            <p class="section-subtitle">Receba promoções exclusivas e novidades da Barbearia Vale Ouro.</p>
+            <form class="newsletter-form" id="newsletterForm" novalidate>
+                <input type="email" id="nlEmail" placeholder="Seu melhor e-mail" required maxlength="254" autocomplete="email">
+                <button type="submit" class="btn btn-primary" id="nlSubmit">
+                    <i class="fas fa-paper-plane"></i> Inscrever
+                </button>
+            </form>
+            <p class="newsletter-msg" id="nlMsg" aria-live="polite"></p>
+        </section>
+
+        <!-- Avaliação rápida -->
+        <section class="section feedback-section" id="avaliacao">
+            <h2 class="section-title"><i class="fas fa-star"></i> SUA OPINIÃO IMPORTA</h2>
+            <p class="section-subtitle">Avalie sua experiência com a Barbearia Vale Ouro.</p>
+            <form class="feedback-form" id="feedbackForm" novalidate>
+                <div class="stars-widget" id="starsWidget" role="group" aria-label="Nota de 1 a 5">
+                    <button type="button" class="star-btn" data-val="1" aria-label="1 estrela">★</button>
+                    <button type="button" class="star-btn" data-val="2" aria-label="2 estrelas">★</button>
+                    <button type="button" class="star-btn" data-val="3" aria-label="3 estrelas">★</button>
+                    <button type="button" class="star-btn" data-val="4" aria-label="4 estrelas">★</button>
+                    <button type="button" class="star-btn" data-val="5" aria-label="5 estrelas">★</button>
+                </div>
+                <input type="hidden" id="fbRating" value="">
+                <textarea id="fbMessage" placeholder="Deixe um comentário (opcional)..." rows="3" maxlength="500"></textarea>
+                <button type="submit" class="btn btn-primary" id="fbSubmit">
+                    <i class="fas fa-comment"></i> Enviar Avaliação
+                </button>
+            </form>
+            <p class="feedback-msg" id="fbMsg" aria-live="polite"></p>
         </section>
     </main>
 
@@ -192,7 +261,9 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <span id="current-year">2026</span> Barbearia Vale Ouro. Todos os direitos reservados.</p>
+            <p>&copy; <span id="current-year">2026</span> Barbearia Vale Ouro. Todos os direitos reservados.
+              <a href="admin-login.html" class="admin-site-link" title="Painel Administrativo" rel="noopener"><i class="fas fa-lock"></i> Admin</a>
+            </p>
             <button onclick="scrollToTop()" class="btn back-to-top"><i class="fas fa-arrow-up"></i> Topo</button>
         </div>
     </footer>
@@ -200,5 +271,139 @@
     <a class="whatsapp-float" href="https://wa.me/5512991898466?text=Olá%2C%20vim%20pelo%20site%20e%20quero%20agendar" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <script>
+    (function () {
+        function setMessage(el, type, text) {
+            if (!el) return;
+            el.classList.remove('is-success', 'is-error');
+            if (type === 'success') el.classList.add('is-success');
+            if (type === 'error') el.classList.add('is-error');
+            el.textContent = text || '';
+        }
+
+        // Newsletter
+        var nlForm  = document.getElementById('newsletterForm');
+        var nlMsg   = document.getElementById('nlMsg');
+        var nlEmail = document.getElementById('nlEmail');
+        var nlBtn   = document.getElementById('nlSubmit');
+
+        if (nlForm) {
+            nlForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var email = (nlEmail && nlEmail.value || '').trim();
+                var isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+                if (!isValidEmail) {
+                    setMessage(nlMsg, 'error', 'Digite um e-mail valido para continuar.');
+                    if (nlEmail) nlEmail.focus();
+                    return;
+                }
+
+                nlBtn.disabled = true;
+                nlBtn.setAttribute('aria-busy', 'true');
+                setMessage(nlMsg, '', 'Enviando inscricao...');
+
+                fetch('/api/newsletter/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, source: 'site-index' })
+                })
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('Falha na inscricao');
+                        return res.json();
+                    })
+                    .then(function () {
+                        setMessage(nlMsg, 'success', 'Inscricao realizada! Em breve voce recebera nossas novidades.');
+                        nlForm.reset();
+                    })
+                    .catch(function () {
+                        setMessage(nlMsg, 'error', 'Nao foi possivel inscrever agora. Tente novamente.');
+                    })
+                    .finally(function () {
+                        nlBtn.disabled = false;
+                        nlBtn.removeAttribute('aria-busy');
+                    });
+            });
+        }
+
+        // Feedback
+        var fbForm   = document.getElementById('feedbackForm');
+        var fbMsg    = document.getElementById('fbMsg');
+        var fbBtn    = document.getElementById('fbSubmit');
+        var fbText   = document.getElementById('fbMessage');
+        var starsBox = document.getElementById('starsWidget');
+        var stars    = document.querySelectorAll('.star-btn');
+        var rating   = 0;
+
+        function updateStars(value) {
+            stars.forEach(function (star, idx) {
+                star.classList.toggle('active', idx < value);
+                star.setAttribute('aria-pressed', idx < value ? 'true' : 'false');
+            });
+        }
+
+        if (stars.length) {
+            stars.forEach(function (star) {
+                star.addEventListener('click', function () {
+                    rating = parseInt(star.dataset.val, 10) || 0;
+                    updateStars(rating);
+                });
+                star.addEventListener('mouseenter', function () {
+                    updateStars(parseInt(star.dataset.val, 10) || 0);
+                });
+            });
+        }
+
+        if (starsBox) {
+            starsBox.addEventListener('mouseleave', function () {
+                updateStars(rating);
+            });
+        }
+
+        if (fbForm) {
+            fbForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var message = (fbText && fbText.value || '').trim();
+
+                if (!rating && !message) {
+                    setMessage(fbMsg, 'error', 'Selecione uma nota ou escreva um comentario.');
+                    return;
+                }
+
+                fbBtn.disabled = true;
+                fbBtn.setAttribute('aria-busy', 'true');
+                setMessage(fbMsg, '', 'Enviando avaliacao...');
+
+                fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        rating: rating || null,
+                        message: message || null,
+                        page: 'index.html'
+                    })
+                })
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('Falha no envio');
+                        return res.json();
+                    })
+                    .then(function () {
+                        setMessage(fbMsg, 'success', 'Obrigado pelo seu feedback!');
+                        fbForm.reset();
+                        rating = 0;
+                        updateStars(0);
+                    })
+                    .catch(function () {
+                        setMessage(fbMsg, 'error', 'Nao foi possivel enviar agora. Tente novamente.');
+                    })
+                    .finally(function () {
+                        fbBtn.disabled = false;
+                        fbBtn.removeAttribute('aria-busy');
+                    });
+            });
+        }
+    }());
+    </script>
 </body>
 </html>

@@ -13,6 +13,10 @@
     <meta property="og:url" content="https://barbeariavaleouro.com.br/produtos.html">
     <meta name="twitter:card" content="summary_large_image">
     <title>Barbearia Vale Ouro | Produtos</title>
+    <meta name="theme-color" content="#0b1f3a">
+    <link rel="icon" type="image/svg+xml" href="img/interno/Logo_Barbearia.svg">
+    <link rel="shortcut icon" href="img/interno/logo.png.png" type="image/png">
+    <link rel="canonical" href="https://barbeariavaleouro.com.br/produtos.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,6 +41,7 @@
         }
         </script>
     <script src="script/script.js" defer></script>
+    <script src="script/catalog-loader.js" defer></script>
 </head>
 <body class="produtos-page">
     <header>
@@ -50,11 +55,12 @@
                 <li><a href="index.html"><i class="fas fa-house"></i> Início</a></li>
                 <li><a href="cortes.html"><i class="fas fa-scissors"></i> Cortes</a></li>
                 <li><a href="servicos.html"><i class="fas fa-user-gear"></i> Serviços</a></li>
+                <li><a href="barbeiros.html"><i class="fas fa-user-tie"></i> Profissionais</a></li>
                 <li><a href="produtos.html"><i class="fas fa-bag-shopping"></i> Produtos</a></li>
                 <li><a href="conforto.html"><i class="fas fa-mug-hot"></i> Conforto</a></li>
                 <li><a class="whatsapp-link" href="https://wa.me/5512991898466?text=Olá%2C%20gostaria%20de%20consultar%20produtos" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu">
+            <div class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -73,111 +79,9 @@
     </section>
 
     <main>
-        <section class="section">
+        <section id="produtos-section" class="section">
             <h2 class="section-title">LINHA DE CUIDADOS</h2>
             <p class="section-subtitle">Todos os itens abaixo possuem atendimento rápido via WhatsApp.</p>
-
-            <div class="product-category">
-                <h3>Shampoo e Condicionador</h3>
-                <div class="product-grid">
-                    <article class="product-card">
-                        <img src="img/produto/CONDICIONADOR.jpg" alt="Condicionador Ice 240ml">
-                        <h4>Condicionador Ice 240ml</h4>
-                        <p>Hidrata sem pesar, ideal para rotina diária.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20tenho%20interesse%20no%20Condicionador%20Ice%20240ml" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="img/produto/SHAMPOO 4 EM 1.jpg" alt="Shampoo 4 em 1">
-                        <h4>Shampoo 4 em 1</h4>
-                        <p>Limpeza prática para cabelo, barba e couro cabeludo.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20tenho%20interesse%20no%20Shampoo%204%20em%201" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="img/produto/LEAVE IN.jpg" alt="Leave in 240ml">
-                        <h4>Leave In 240ml</h4>
-                        <p>Proteção térmica e controle de frizz para finalização.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20tenho%20interesse%20no%20Leave%20In%20240ml" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="img/produto/IMG_20251101_092901.jpg" alt="Linha de cuidados masculinos">
-                        <h4>Linha Premium de Cuidados</h4>
-                        <p>Seleção de produtos para manter hidratação, limpeza e acabamento no dia a dia.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20conhecer%20a%20linha%20premium%20de%20cuidados" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                </div>
-            </div>
-
-            <div class="product-category">
-                <h3>Modeladores</h3>
-                <div class="product-grid">
-                    <article class="product-card">
-                        <img src="img/produto/Creme Modelado.jpg" alt="Creme modelador efeito teia">
-                        <h4>Creme Modelador Efeito Teia</h4>
-                        <p>Textura flexível para penteados com movimento.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20tenho%20interesse%20no%20Creme%20Modelador%20Efeito%20Teia" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="img/produto/Cera Modeladora Extra Forte.jpg" alt="Cera modeladora extra forte matte">
-                        <h4>Cera Modeladora Extra Forte</h4>
-                        <p>Fixação alta com acabamento matte para longa duração.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20tenho%20interesse%20na%20Cera%20Modeladora%20Extra%20Forte" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="img/produto/POMADA MODELADORA caramelo.jpg" alt="Pomada modeladora caramelo">
-                        <h4>Pomada Caramelo Extra Forte</h4>
-                        <p>Modelagem firme com brilho controlado e fácil aplicação.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20tenho%20interesse%20na%20Pomada%20Caramelo%20Extra%20Forte" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                </div>
-            </div>
-
-            <div class="product-category">
-                <h3>Linha de Barba</h3>
-                <div class="product-grid">
-                    <article class="product-card">
-                        <img src="img/produto/Barbear (1).jpg" alt="Balm para barba">
-                        <h4>Balm Classe A</h4>
-                        <p>Condiciona os fios e ajuda na modelagem da barba.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20tenho%20interesse%20no%20Balm%20Classe%20A" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="img/produto/Loção Pós Barba.jpg" alt="Loção pós barba">
-                        <h4>Loção Pós-Barba Ferrari Black</h4>
-                        <p>Sensação refrescante para finalizar o barbear.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20tenho%20interesse%20na%20Loção%20Pós-Barba%20Ferrari%20Black" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="img/produto/IMG_20251101_093413.jpg" alt="Loção menthol">
-                        <h4>Loção Pós-Barba Menthol</h4>
-                        <p>Alívio imediato com fragrância masculina marcante.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20tenho%20interesse%20na%20Loção%20Pós-Barba%20Menthol" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="img/produto/IMG_20251101_093352.jpg" alt="Minoxidil para barba">
-                        <h4>Minoxidil Dom Pelo</h4>
-                        <p>Opção para rotina de fortalecimento e cuidado direcionado para barba.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20tenho%20interesse%20no%20Minoxidil%20Dom%20Pelo" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                </div>
-            </div>
-
-            <div class="product-category">
-                <h3>Destaques da Vitrine</h3>
-                <div class="product-grid">
-                    <article class="product-card">
-                        <img src="img/produto/IMG_20251101_093352.jpg" alt="Produto em destaque da vitrine">
-                        <h4>Cuidado para Crescimento</h4>
-                        <p>Produto voltado para homens que buscam reforçar a rotina de cuidados com os fios.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20consultar%20os%20destaques%20da%20vitrine" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="img/produto/IMG_20251101_093413.jpg" alt="Produto de finalização da vitrine">
-                        <h4>Finalização Refrescante</h4>
-                        <p>Perfeito para completar o barbear com sensação de limpeza e frescor.</p>
-                        <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20consultar%20a%20finalização%20refrescante" target="_blank" rel="noopener">Consultar Produto</a>
-                    </article>
-                </div>
-            </div>
         </section>
     </main>
 
@@ -201,13 +105,14 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <span id="current-year">2026</span> Barbearia Vale Ouro. Todos os direitos reservados.</p>
+            <p>&copy; <span id="current-year">2026</span> Barbearia Vale Ouro. Todos os direitos reservados.
+              <a href="admin-login.html" class="admin-site-link" title="Painel Administrativo" rel="noopener"><i class="fas fa-lock"></i> Admin</a>
+            </p>
             <button onclick="scrollToTop()" class="btn back-to-top"><i class="fas fa-arrow-up"></i> Topo</button>
         </div>
     </footer>
 
     <a class="whatsapp-float" href="https://wa.me/5512991898466?text=Olá%2C%20vim%20pela%20página%20de%20produtos%20e%20quero%20atendimento" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
         <i class="fab fa-whatsapp"></i>
-    </a>
-</body>
+    </a></body>
 </html>

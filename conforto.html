@@ -13,6 +13,10 @@
     <meta property="og:url" content="https://barbeariavaleouro.com.br/conforto.html">
     <meta name="twitter:card" content="summary_large_image">
     <title>Barbearia Vale Ouro | Conforto</title>
+    <meta name="theme-color" content="#0b1f3a">
+    <link rel="icon" type="image/svg+xml" href="img/interno/Logo_Barbearia.svg">
+    <link rel="shortcut icon" href="img/interno/logo.png.png" type="image/png">
+    <link rel="canonical" href="https://barbeariavaleouro.com.br/conforto.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -50,11 +54,12 @@
                 <li><a href="index.html"><i class="fas fa-house"></i> Início</a></li>
                 <li><a href="cortes.html"><i class="fas fa-scissors"></i> Cortes</a></li>
                 <li><a href="servicos.html"><i class="fas fa-user-gear"></i> Serviços</a></li>
+                <li><a href="barbeiros.html"><i class="fas fa-user-tie"></i> Profissionais</a></li>
                 <li><a href="produtos.html"><i class="fas fa-bag-shopping"></i> Produtos</a></li>
                 <li><a href="conforto.html"><i class="fas fa-mug-hot"></i> Conforto</a></li>
                 <li><a class="whatsapp-link" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20agendar%20na%20Vale%20Ouro" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu">
+            <div class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -128,7 +133,7 @@
             <div class="notice-box">
                 As opções podem variar conforme disponibilidade. Chame no WhatsApp para confirmar em tempo real.
             </div>
-            <div style="margin-top: 1rem;">
+            <div class="mt-1">
                 <a class="btn btn-whatsapp" href="https://wa.me/5512991898466?text=Olá%2C%20quero%20confirmar%20as%20bebidas%20disponíveis%20na%20barbearia" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar no WhatsApp</a>
             </div>
         </section>
@@ -154,7 +159,9 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <span id="current-year">2026</span> Barbearia Vale Ouro. Todos os direitos reservados.</p>
+            <p>&copy; <span id="current-year">2026</span> Barbearia Vale Ouro. Todos os direitos reservados.
+              <a href="admin-login.html" class="admin-site-link" title="Painel Administrativo" rel="noopener"><i class="fas fa-lock"></i> Admin</a>
+            </p>
             <button onclick="scrollToTop()" class="btn back-to-top"><i class="fas fa-arrow-up"></i> Topo</button>
         </div>
     </footer>
