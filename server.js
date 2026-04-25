@@ -190,7 +190,12 @@ app.get('/api/items', async (req, res) => {
     }
 
     try {
-        let sql    = 'SELECT id, category, subcategory, title, description, whatsapp_msg, image_path, created_at, updated_at FROM items';
+        // Inclui campos extras para profissionais
+        let sql = 'SELECT id, category, subcategory, title, description, whatsapp_msg, image_path, created_at, updated_at';
+        if (category === 'profissionais') {
+            sql += ', specialty, rating, experience, tags, instagram, is_featured';
+        }
+        sql += ' FROM items';
         const params = [];
         if (category) { sql += ' WHERE category = ?'; params.push(category); }
         sql += ' ORDER BY subcategory ASC, created_at DESC';
@@ -241,6 +246,13 @@ app.post(
 
         const { category, subcategory, title, description, whatsapp_msg } = req.body;
         let image_path = null;
+
+        // Validação extra: garantir que category é válido
+        if (!category || !VALID_CATS.includes(category)) {
+            return res.status(400).json({ error: 'Categoria inválida.', details: [{ msg: 'category deve ser um dos: ' + VALID_CATS.join(', ') }] });
+        }
+
+        console.log('[POST /api/items] Recebido:', { category, subcategory, title, description: description?.substring(0, 50) });
 
         try {
             if (req.file) {
@@ -344,6 +356,89 @@ app.delete('/api/items/:id', verifyToken, async (req, res) => {
     } catch (err) {
         console.error('[DELETE /api/items/:id]', err.message);
         res.status(500).json({ error: 'Erro ao excluir item.' });
+    }
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  HIGHLIGHTS API — Destaques da Barbearia
+// ═════════════════════════════════════════════════════════════════════════════
+
+// GET /api/highlights — Lista todos os destaques ativos
+app.get('/api/highlights', async (req, res) => {
+    try {
+        const [rows] = await pool.execute(
+            'SELECT id, title, description, badge, image_path, link, is_active, display_order FROM highlights WHERE is_active = 1 ORDER BY display_order ASC, created_at DESC'
+        );
+        res.json(rows);
+    } catch (err) {
+        console.error('[GET /api/highlights]', err.message);
+        res.status(500).json({ error: 'Erro interno.' });
+    }
+});
+
+// POST /api/highlights (protegido) — Criar novo destaque
+app.post('/api/highlights', verifyToken, async (req, res) => {
+    const { title, description, badge, image_path, link, is_active, display_order } = req.body;
+    
+    if (!title || !description || !image_path) {
+        return res.status(400).json({ error: 'Título, descrição e imagem são obrigatórios.' });
+    }
+
+    try {
+        const [result] = await pool.execute(
+            'INSERT INTO highlights (title, description, badge, image_path, link, is_active, display_order) VALUES (?, ?, ?, ?, ?, ?, ?)',
+            [title, description, badge || null, image_path, link || null, is_active ?? 1, display_order || 0]
+        );
+        res.json({ success: true, id: result.insertId });
+    } catch (err) {
+        console.error('[POST /api/highlights]', err.message);
+        res.status(500).json({ error: 'Erro ao criar destaque.' });
+    }
+});
+
+// PUT /api/highlights/:id (protegido) — Atualizar destaque
+app.put('/api/highlights/:id', verifyToken, async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    if (!Number.isFinite(id) || id < 1) {
+        return res.status(400).json({ error: 'ID inválido.' });
+    }
+
+    const { title, description, badge, image_path, link, is_active, display_order } = req.body;
+
+    try {
+        const [rows] = await pool.execute('SELECT * FROM highlights WHERE id = ?', [id]);
+        if (rows.length === 0) return res.status(404).json({ error: 'Destaque não encontrado.' });
+
+        await pool.execute(
+            'UPDATE highlights SET title = ?, description = ?, badge = ?, image_path = ?, link = ?, is_active = ?, display_order = ? WHERE id = ?',
+            [title, description, badge, image_path, link, is_active, display_order, id]
+        );
+        res.json({ success: true });
+    } catch (err) {
+        console.error('[PUT /api/highlights/:id]', err.message);
+        res.status(500).json({ error: 'Erro ao atualizar destaque.' });
+    }
+});
+
+// DELETE /api/highlights/:id (protegido) — Excluir destaque
+app.delete('/api/highlights/:id', verifyToken, async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    if (!Number.isFinite(id) || id < 1) {
+        return res.status(400).json({ error: 'ID inválido.' });
+    }
+
+    try {
+        const [rows] = await pool.execute('SELECT * FROM highlights WHERE id = ?', [id]);
+        if (rows.length === 0) return res.status(404).json({ error: 'Destaque não encontrado.' });
+
+        const item = rows[0];
+        await pool.execute('DELETE FROM highlights WHERE id = ?', [id]);
+        if (item.image_path) deleteFile(item.image_path);
+
+        res.json({ success: true });
+    } catch (err) {
+        console.error('[DELETE /api/highlights/:id]', err.message);
+        res.status(500).json({ error: 'Erro ao excluir destaque.' });
     }
 });
 
@@ -465,55 +560,6 @@ app.post('/api/track/duration', trackLimiter,
     }
 );
 
-// POST /api/newsletter/subscribe
-const newsletterLimiter = rateLimit({ windowMs: 60 * 60 * 1000, max: 20 });
-app.post('/api/newsletter/subscribe', newsletterLimiter,
-    body('email').isEmail().normalizeEmail(),
-    body('source').optional({ checkFalsy: true }).trim().isLength({ max: 100 }),
-    async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) return res.status(400).json({ error: 'E-mail inválido.' });
-
-        const { email, source } = req.body;
-        try {
-            await pool.execute(
-                'INSERT IGNORE INTO analytics_newsletter (email, source) VALUES (?,?)',
-                [email, source || null]
-            );
-            res.json({ ok: true });
-        } catch (err) {
-            console.error('[newsletter]', err.message);
-            res.status(500).json({ error: 'Erro interno.' });
-        }
-    }
-);
-
-// POST /api/feedback
-const feedbackLimiter = rateLimit({ windowMs: 60 * 60 * 1000, max: 10 });
-app.post('/api/feedback',
-    feedbackLimiter,
-    body('rating').optional({ checkFalsy: true }).isInt({ min: 1, max: 5 }),
-    body('message').optional({ checkFalsy: true }).trim().isLength({ max: 1000 }),
-    body('page').optional({ checkFalsy: true }).trim().isLength({ max: 200 }),
-    async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) return res.status(400).json({ error: 'Dados inválidos.' });
-
-        const { rating, message, page } = req.body;
-        if (!rating && !message) return res.status(400).json({ error: 'Informe uma avaliação ou mensagem.' });
-        try {
-            await pool.execute(
-                'INSERT INTO analytics_feedback (rating, message, page) VALUES (?,?,?)',
-                [rating || null, message || null, page || null]
-            );
-            res.json({ ok: true });
-        } catch (err) {
-            console.error('[feedback]', err.message);
-            res.status(500).json({ error: 'Erro interno.' });
-        }
-    }
-);
-
 // ═════════════════════════════════════════════════════════════════════════════
 //  ANALYTICS — DASHBOARD (protegido)
 // ═════════════════════════════════════════════════════════════════════════════
@@ -540,10 +586,6 @@ app.get('/api/analytics/summary', verifyToken, async (req, res) => {
         const [[bounce]]  = await pool.execute(`SELECT COUNT(*) AS cnt FROM analytics_pageviews WHERE ${pw} AND bounced = 1 AND duration_s IS NOT NULL`);
         const [[nonBounce]]= await pool.execute(`SELECT COUNT(*) AS cnt FROM analytics_pageviews WHERE ${pw} AND duration_s IS NOT NULL`);
         const [[waRow]]   = await pool.execute(`SELECT COUNT(*) AS cnt FROM analytics_events WHERE event_type='whatsapp_click' AND ${pw}`);
-        const [[nlRow]]   = await pool.execute(`SELECT COUNT(*) AS cnt FROM analytics_newsletter WHERE ${pw}`);
-        const [[nlTotal]] = await pool.execute(`SELECT COUNT(*) AS cnt FROM analytics_newsletter`);
-        const [[fbRow]]   = await pool.execute(`SELECT COUNT(*) AS cnt FROM analytics_feedback WHERE ${pw}`);
-        const [[avgRat]]  = await pool.execute(`SELECT AVG(rating) AS avg FROM analytics_feedback WHERE ${pw} AND rating IS NOT NULL`);
 
         const bounceRate = nonBounce.cnt > 0 ? Math.round((bounce.cnt / nonBounce.cnt) * 100) : null;
 
@@ -553,11 +595,7 @@ app.get('/api/analytics/summary', verifyToken, async (req, res) => {
             unique_sessions:  pvRow.unique_sessions,
             avg_duration_s:   durRow.avg_duration ? Math.round(durRow.avg_duration) : null,
             bounce_rate:      bounceRate,
-            whatsapp_clicks:  waRow.cnt,
-            newsletter_new:   nlRow.cnt,
-            newsletter_total: nlTotal.cnt,
-            feedback_count:   fbRow.cnt,
-            avg_rating:       avgRat.avg ? parseFloat(avgRat.avg).toFixed(1) : null
+            whatsapp_clicks:  waRow.cnt
         });
     } catch (err) {
         console.error('[analytics/summary]', err.message);
@@ -659,49 +697,6 @@ app.get('/api/analytics/bounce', verifyToken, async (req, res) => {
         res.json(rows);
     } catch (err) {
         console.error('[analytics/bounce]', err.message);
-        res.status(500).json({ error: 'Erro interno.' });
-    }
-});
-
-// GET /api/analytics/newsletter?period=month
-app.get('/api/analytics/newsletter', verifyToken, async (req, res) => {
-    const period = ['today','week','month','3months'].includes(req.query.period)
-        ? req.query.period : 'month';
-    const pw = periodWhere(period);
-    try {
-        const [rows] = await pool.execute(
-            `SELECT DATE(created_at) AS data, COUNT(*) AS inscricoes
-             FROM analytics_newsletter WHERE ${pw}
-             GROUP BY DATE(created_at) ORDER BY data`
-        );
-        res.json(rows);
-    } catch (err) {
-        console.error('[analytics/newsletter]', err.message);
-        res.status(500).json({ error: 'Erro interno.' });
-    }
-});
-
-// GET /api/analytics/feedback?period=month
-app.get('/api/analytics/feedback', verifyToken, async (req, res) => {
-    const period = ['today','week','month','3months'].includes(req.query.period)
-        ? req.query.period : 'month';
-    const pw = periodWhere(period);
-    try {
-        const [rows] = await pool.execute(
-            `SELECT id, rating, message, page, created_at
-             FROM analytics_feedback WHERE ${pw}
-             ORDER BY created_at DESC LIMIT 50`
-        );
-        const [[stats]] = await pool.execute(
-            `SELECT COUNT(*) AS total, AVG(rating) AS avg_rating,
-                    SUM(rating=5) AS stars5, SUM(rating=4) AS stars4,
-                    SUM(rating=3) AS stars3, SUM(rating=2) AS stars2,
-                    SUM(rating=1) AS stars1
-             FROM analytics_feedback WHERE ${pw}`
-        );
-        res.json({ stats, items: rows });
-    } catch (err) {
-        console.error('[analytics/feedback]', err.message);
         res.status(500).json({ error: 'Erro interno.' });
     }
 });

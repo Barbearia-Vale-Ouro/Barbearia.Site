@@ -22,6 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/barbeiros.css">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -47,7 +48,7 @@
     </script>
     <script src="script/script.js" defer></script>
 </head>
-<body class="catalog-page">
+<body class="barbeiros-page">
     <header>
         <nav>
             <div class="logo">
@@ -72,34 +73,36 @@
         </nav>
     </header>
 
+    <section class="hero">
+        <div class="hero-content reveal">
+            <h1>NOSSOS PROFISSIONAIS</h1>
+            <p>Equipe especializada para cuidar do seu estilo com excelência.</p>
+        </div>
+    </section>
+
     <main>
-        <section class="section reveal">
-            <h2 class="section-title">Nossos Profissionais</h2>
-            <p class="section-subtitle">Conheça os barbeiros que criam o estilo da Barbearia Vale Ouro.</p>
-            <div class="profile-tabs">
-                <button class="profile-tab active" data-panel="profissionais">Barbeiros</button>
-                <button class="profile-tab" data-panel="equipe">Equipe</button>
+        <!-- Seção Nosso Time -->
+        <section class="team-section">
+            <div class="team-header">
+                <span class="section-tag">Equipe Premium</span>
+                <h2 class="section-title">CONHEÇA NOSSO TIME</h2>
+                <p class="section-subtitle">Profissionais especializados em cortes masculinos, barba e acabamento premium. Cada barbeiro traz técnica, estilo e personalidade para transformar seu visual.</p>
             </div>
-            <div class="profile-panels">
-                <div class="profile-panel active" data-panel="profissionais">
-                    <div class="team-grid" id="teamGrid">
-                        <div class="team-loading">Carregando profissionais...</div>
-                    </div>
-                </div>
-                <div class="profile-panel" data-panel="equipe">
-                    <div class="team-copy">
-                        <p>Os barbeiros da Vale Ouro são especializados em cortes masculinos, barba e acabamento premium.</p>
-                        <p>Cada profissional traz técnica, atitude e estilo para entregar um resultado único.</p>
-                        <p>Use o painel administrativo para cadastrar fotos, nomes e descrições de cada barbeiro.</p>
-                    </div>
-                </div>
+            
+            <div class="team-grid" id="teamGrid">
+                <div class="team-loading">Carregando profissionais...</div>
             </div>
         </section>
 
-        <section class="section promo-callout">
-            <h2 class="section-title">AGENDAR COM SEU BARBEIRO PREFERIDO</h2>
-            <p class="section-subtitle">Escolha o profissional e fale direto no WhatsApp para agendar.</p>
-            <a class="btn btn-offer promo-button" href="https://wa.me/5512991898466?text=Olá%2C%20vim%20pelo%20site%20da%20Barbearia%20Vale%20Ouro%20e%20quero%20agendar%20com%20um%20barbeiro%20específico." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Agendar Agora</a>
+        <!-- Seção Institucional -->
+        <section class="team-cta-section">
+            <div class="team-cta-content">
+                <h3 class="team-cta-title">ESCOLHA SEU ESTILO, ESCOLHA SEU BARBEIRO</h3>
+                <p class="team-cta-text">Na Barbearia Vale Ouro, cada profissional é especializado em diferentes técnicas e estilos. Escolha o barbeiro que mais combina com você e agendamento seu horário direto pelo WhatsApp.</p>
+                <a class="team-cta-btn" href="https://wa.me/5512991898466?text=Olá, vim pelo site e quero conhecer os profissionais da Barbearia Vale Ouro." target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
+            </div>
         </section>
     </main>
 
