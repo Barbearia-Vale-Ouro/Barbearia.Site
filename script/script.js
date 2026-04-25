@@ -41,10 +41,61 @@
             });
         });
 
+        /* ── Carregar Profissionais (Barbeiros) — executa em qualquer página com #teamGrid ── */
+        var teamGrid = document.getElementById('teamGrid');
+        if (teamGrid) {
+            loadProfissionais(teamGrid);
+        }
+
+        function loadProfissionais(grid) {
+            grid.innerHTML = '<div class="team-loading">Carregando profissionais...</div>';
+            fetch('/api/items?category=profissionais')
+                .then(function (res) { return res.json(); })
+                .then(function (items) {
+                    if (!items || items.length === 0) {
+                        grid.innerHTML = '<div class="team-empty">Nenhum profissional cadastrado ainda.</div>';
+                        return;
+                    }
+                    grid.innerHTML = items.map(function (item) {
+                        var avatarHtml = item.image_path 
+                            ? '<img src="/' + item.image_path + '" alt="' + escHtml(item.title) + '">' 
+                            : '';
+                        var whatsMsg = encodeURIComponent('Olá, vim pelo site e quero agendar com o(a) barbeiro(a) ' + item.title);
+                        var specialty = item.specialty || 'Cortes Masculinos';
+                        var rating = item.rating || '4.9';
+                        var experience = item.experience || '5+';
+                        var tags = item.tags ? item.tags.split(',').map(function(t) { return t.trim(); }).slice(0, 3) : ['Corte', 'Barba', 'Acabamento'];
+                        var insta = item.instagram || 'barbeariavaleouro';
+                        
+                        return '<article class="barber-card">' +
+                            '<div class="barber-card-banner"></div>' +
+                            '<div class="barber-card-avatar' + (avatarHtml ? '' : ' placeholder') + '">' + avatarHtml + '</div>' +
+                            '<div class="barber-card-body">' +
+                            '<h3 class="barber-card-name">' + escHtml(item.title) + '</h3>' +
+                            '<div class="barber-card-specialty">' + escHtml(specialty) + '</div>' +
+                            '<p class="barber-card-bio">' + escHtml(item.description) + '</p>' +
+                            '<div class="barber-tags">' +
+                            tags.map(function(tag) { return '<span class="barber-tag">' + escHtml(tag) + '</span>'; }).join('') +
+                            '</div>' +
+                            '<div class="barber-social">' +
+                            '<a class="barber-social-insta" href="https://instagram.com/' + insta + '" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>' +
+                            '<a class="barber-social-whats" href="https://wa.me/5512991898466?text=' + whatsMsg + '" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>' +
+                            '</div>' +
+                            '<a class="barber-card-btn" href="https://wa.me/5512991898466?text=' + whatsMsg + '" target="_blank" rel="noopener">' +
+                            '<i class="fas fa-calendar-alt"></i> Agendar' +
+                            '</a>' +
+                            '</div>' +
+                            '</article>';
+                    }).join('');
+                })
+                .catch(function () {
+                    grid.innerHTML = '<div class="team-empty">Falha ao carregar profissionais.</div>';
+                });
+        }
+
+        /* ── Lógica de abas (apenas se existir) ─────────────────────────────── */
         var tabs = document.querySelectorAll('.profile-tab');
         var panels = document.querySelectorAll('.profile-panel');
-        var teamGrid = document.getElementById('teamGrid');
-        var teamLoaded = false;
 
         function setActiveTab(name) {
             tabs.forEach(function (tab) {
@@ -53,32 +104,6 @@
             panels.forEach(function (panel) {
                 panel.classList.toggle('active', panel.dataset.panel === name);
             });
-            if (name === 'profissionais' && !teamLoaded) {
-                teamLoaded = true;
-                if (teamGrid) {
-                    teamGrid.innerHTML = '<div class="team-loading">Carregando profissionais...</div>';
-                    fetch('/api/items?category=profissionais')
-                        .then(function (res) { return res.json(); })
-                        .then(function (items) {
-                            if (!items || items.length === 0) {
-                                teamGrid.innerHTML = '<div class="team-empty">Nenhum profissional cadastrado ainda.</div>';
-                                return;
-                            }
-                            teamGrid.innerHTML = items.map(function (item) {
-                                return '<article class="team-card">' +
-                                    (item.image_path ? '<img src="/' + item.image_path + '" alt="' + escHtml(item.title) + '">' : '<div class="team-card-image placeholder"></div>') +
-                                    '<div class="team-card-body">' +
-                                    '<h3>' + escHtml(item.title) + '</h3>' +
-                                    '<p>' + escHtml(item.description) + '</p>' +
-                                    '</div>' +
-                                    '</article>';
-                            }).join('');
-                        })
-                        .catch(function () {
-                            teamGrid.innerHTML = '<div class="team-empty">Falha ao carregar profissionais.</div>';
-                        });
-                }
-            }
         }
 
         tabs.forEach(function (tab) {
@@ -89,6 +114,32 @@
 
         if (tabs.length && panels.length) {
             setActiveTab('profissionais');
+        }
+
+        /* ── Carregar Destaques (Highlights) ───────────────────────────────── */
+        var highlightsGrid = document.getElementById('highlightsGrid');
+        if (highlightsGrid) {
+            fetch('/api/highlights')
+                .then(function (res) { return res.json(); })
+                .then(function (items) {
+                    if (!items || items.length === 0) return;
+                    highlightsGrid.innerHTML = items.map(function (item) {
+                        var badgeHtml = item.badge ? '<span class="highlight-card-badge"><i class="fas fa-star"></i> ' + escHtml(item.badge) + '</span>' : '';
+                        var link = item.link || '#';
+                        return '<article class="highlight-card">' +
+                            badgeHtml +
+                            '<img src="/' + escHtml(item.image_path) + '" alt="' + escHtml(item.title) + '" loading="lazy">' +
+                            '<div class="highlight-card-body">' +
+                            '<h3>' + escHtml(item.title) + '</h3>' +
+                            '<p>' + escHtml(item.description) + '</p>' +
+                            '<a class="btn btn-primary" href="' + escHtml(link) + '">Ver Mais</a>' +
+                            '</div>' +
+                            '</article>';
+                    }).join('');
+                })
+                .catch(function () {
+                    // Mantém os cards padrão em caso de erro
+                });
         }
     });
 
