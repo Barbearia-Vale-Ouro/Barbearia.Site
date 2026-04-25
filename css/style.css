@@ -373,7 +373,76 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 1rem;
 }
+/* ── Cards de Destaque (Highlights) ──────────────────────────────── */
+.highlight-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
 
+.highlight-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(11, 31, 58, 0.18);
+}
+
+.highlight-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.highlight-card:hover img {
+    transform: scale(1.05);
+}
+
+.highlight-card-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.highlight-card-body {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+
+.highlight-card-body h3 {
+    color: var(--color-primary);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+.highlight-card-body p {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.highlight-card-body .btn {
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: center;
+}
 .profile-tabs {
     display: flex;
     flex-wrap: wrap;
@@ -537,107 +606,7 @@ main {
     margin-top: 1rem;
 }
 
-/* Newsletter + Feedback (index) */
-.newsletter-section,
-.feedback-section {
-    background: #f8fafc;
-    border: 1px solid rgba(11, 31, 58, 0.08);
-    border-radius: 14px;
-    box-shadow: var(--shadow-card);
-}
-
-.newsletter-form,
-.feedback-form {
-    max-width: 680px;
-    margin: 0.5rem auto 0;
-}
-
-.newsletter-form {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.65rem;
-}
-
-.newsletter-form input,
-.feedback-form textarea {
-    width: 100%;
-    border: 1px solid #d6ddeb;
-    border-radius: 10px;
-    padding: 0.8rem 0.9rem;
-    font-family: inherit;
-    font-size: 0.95rem;
-    color: var(--color-text);
-    background: #fff;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.newsletter-form input:focus,
-.feedback-form textarea:focus {
-    outline: none;
-    border-color: #2f5ea6;
-    box-shadow: 0 0 0 3px rgba(47, 94, 166, 0.15);
-}
-
-.newsletter-form button,
-.feedback-form button[type="submit"] {
-    min-width: 160px;
-}
-
-.newsletter-msg,
-.feedback-msg {
-    min-height: 1.4rem;
-    margin-top: 0.55rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #5f6d85;
-}
-
-.newsletter-msg.is-success,
-.feedback-msg.is-success {
-    color: #15803d;
-}
-
-.newsletter-msg.is-error,
-.feedback-msg.is-error {
-    color: #b91c1c;
-}
-
-.stars-widget {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.25rem;
-    margin-bottom: 0.75rem;
-}
-
-.star-btn {
-    border: none;
-    background: transparent;
-    color: #b8c1d4;
-    font-size: 2rem;
-    line-height: 1;
-    padding: 0.1rem 0.2rem;
-    cursor: pointer;
-    transition: transform 0.15s ease, color 0.15s ease;
-}
-
-.star-btn:hover,
-.star-btn.active {
-    color: #f2cf73;
-    transform: translateY(-1px) scale(1.04);
-}
-
-.feedback-form textarea {
-    min-height: 110px;
-    resize: vertical;
-    margin-bottom: 0.6rem;
-}
-
-.newsletter-form button:disabled,
-.feedback-form button[type="submit"]:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
+/* --- Seções removidas: newsletter e feedback --- */
 
 footer {
     background: #08172c;
@@ -789,18 +758,5 @@ footer {
         right: 14px;
         bottom: 14px;
         font-size: 1.65rem;
-    }
-
-    .newsletter-form {
-        grid-template-columns: 1fr;
-    }
-
-    .newsletter-form button,
-    .feedback-form button[type="submit"] {
-        width: 100%;
-    }
-
-    .star-btn {
-        font-size: 1.8rem;
     }
 }

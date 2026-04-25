@@ -1,0 +1,453 @@
+/* ═══════════════════════════════════════════════════════════════════
+   SEÇÃO NOSSO TIME - BARBEARIA PREMIUM
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Hero Section ──────────────────────────────── */
+.barbeiros-page .hero {
+    background-image: url('../img/banner_inicial.png');
+    background-position: center center;
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.barbeiros-page .hero::before {
+    background: linear-gradient(135deg, rgba(11, 31, 58, 0.88) 0%, rgba(11, 31, 58, 0.65) 50%, rgba(11, 31, 58, 0.5) 100%);
+}
+
+.barbeiros-page .hero-content h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+}
+
+.barbeiros-page .hero-content p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ── Seção Principal ──────────────────────────────── */
+.team-section {
+    padding: 4rem 1rem 5rem;
+    background: linear-gradient(180deg, #faf9f6 0%, #f0ede6 100%);
+    min-height: 100vh;
+}
+
+.team-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3.5rem;
+    padding: 0 1rem;
+}
+
+.team-header .section-tag {
+    display: inline-block;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    margin-bottom: 1rem;
+}
+
+.team-header .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    color: var(--color-primary);
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.team-header .section-subtitle {
+    color: #5a6474;
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+/* ── Grid de Barbeiros ──────────────────────────────── */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ── Card do Barbeiro ──────────────────────────────── */
+.barber-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(11, 31, 58, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.barber-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-primary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.barber-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 60px rgba(11, 31, 58, 0.15);
+}
+
+.barber-card:hover::before {
+    opacity: 1;
+}
+
+/* ── Banner do Card (Ambiente) ──────────────────────────────── */
+.barber-card-banner {
+    height: 140px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #1a2d4a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.barber-card-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── Avatar Circular ──────────────────────────────── */
+.barber-card-avatar {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    background: linear-gradient(135deg, #e8e2d5, #d5cec0);
+    z-index: 2;
+}
+
+.barber-card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.barber-card:hover .barber-card-avatar img {
+    transform: scale(1.1);
+}
+
+.barber-card-avatar.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.barber-card-avatar.placeholder::before {
+    content: '\f4c0';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 3rem;
+    color: var(--color-accent);
+}
+
+/* ── Corpo do Card ──────────────────────────────── */
+.barber-card-body {
+    padding: 4.5rem 1.5rem 1.5rem;
+    text-align: center;
+}
+
+.barber-card-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+}
+
+.barber-card-specialty {
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.8rem;
+}
+
+.barber-card-bio {
+    color: #5a6474;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    padding: 0 0.5rem;
+}
+
+/* ── Stats do Barbeiro ──────────────────────────────── */
+.barber-card-stats {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.2rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.barber-stat {
+    text-align: center;
+}
+
+.barber-stat-value {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    letter-spacing: 0.5px;
+}
+
+.barber-stat-label {
+    font-size: 0.7rem;
+    color: #8a95a5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.barber-rating {
+    color: var(--color-accent);
+    font-size: 0.85rem;
+}
+
+/* ── Tags de Especialidades ──────────────────────────────── */
+.barber-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.barber-tag {
+    background: #f5f3ef;
+    color: #5a6474;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ── Redes Sociais ──────────────────────────────── */
+.barber-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.barber-social a {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.barber-social-insta {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+}
+
+.barber-social-whats {
+    background: #25d366;
+    color: #fff;
+}
+
+.barber-social a:hover {
+    transform: scale(1.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Botão Agendar ──────────────────────────────── */
+.barber-card-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.barber-card-btn:hover {
+    background: var(--color-accent);
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(201, 161, 58, 0.35);
+}
+
+.barber-card-btn i {
+    font-size: 1.2rem;
+}
+
+/* ── Seção Institucional ──────────────────────────────── */
+.team-cta-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #1a2d4a 100%);
+    padding: 4rem 2rem;
+    margin-top: 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.team-cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.team-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #fff;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.team-cta-text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.team-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.team-cta-btn:hover {
+    background: #d4a93a;
+    transform: scale(1.05);
+}
+
+/* ── Estados de Carregamento ──────────────────────────────── */
+.team-loading,
+.team-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #5a6474;
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+}
+
+.team-empty {
+    background: #fff;
+    border-radius: 20px;
+    padding: 4rem 2rem;
+    box-shadow: 0 10px 40px rgba(11, 31, 58, 0.08);
+}
+
+/* ── Responsividade ──────────────────────────────── */
+@media (max-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-section {
+        padding: 3rem 0.8rem 4rem;
+    }
+    
+    .team-header {
+        margin-bottom: 2.5rem;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+    
+    .barber-card-avatar {
+        width: 110px;
+        height: 110px;
+        top: 70px;
+    }
+    
+    .barber-card-body {
+        padding: 4rem 1.2rem 1.2rem;
+    }
+    
+    .barber-card-name {
+        font-size: 1.4rem;
+    }
+    
+    .barber-card-stats {
+        gap: 1rem;
+    }
+    
+    .barber-card-btn {
+        padding: 0.9rem 1.2rem;
+        font-size: 1rem;
+    }
+    
+    .team-cta-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .team-cta-title {
+        font-size: 1.8rem;
+    }
+}
