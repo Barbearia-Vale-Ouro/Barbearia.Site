@@ -57,36 +57,43 @@
                         return;
                     }
                     grid.innerHTML = items.map(function (item) {
-                        var avatarHtml = item.image_path 
+                        var imageHtml = item.image_path 
                             ? '<img src="/' + item.image_path + '" alt="' + escHtml(item.title) + '">' 
-                            : '';
+                            : '<div class="barber-card-placeholder"><i class="fas fa-user"></i></div>';
                         var whatsMsg = encodeURIComponent('Olá, vim pelo site e quero agendar com o(a) barbeiro(a) ' + item.title);
                         var specialty = item.specialty || 'Cortes Masculinos';
-                        var rating = item.rating || '4.9';
-                        var experience = item.experience || '5+';
                         var tags = item.tags ? item.tags.split(',').map(function(t) { return t.trim(); }).slice(0, 3) : ['Corte', 'Barba', 'Acabamento'];
-                        var insta = item.instagram || 'barbeariavaleouro';
                         
-                        return '<article class="barber-card">' +
-                            '<div class="barber-card-banner"></div>' +
-                            '<div class="barber-card-avatar' + (avatarHtml ? '' : ' placeholder') + '">' + avatarHtml + '</div>' +
-                            '<div class="barber-card-body">' +
+                        return '<article class="barber-card" data-expanded="false">' +
+                            '<div class="barber-card-image">' + imageHtml +
+                            '<div class="barber-card-overlay">' +
                             '<h3 class="barber-card-name">' + escHtml(item.title) + '</h3>' +
                             '<div class="barber-card-specialty">' + escHtml(specialty) + '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="barber-card-body">' +
                             '<p class="barber-card-bio">' + escHtml(item.description) + '</p>' +
                             '<div class="barber-tags">' +
                             tags.map(function(tag) { return '<span class="barber-tag">' + escHtml(tag) + '</span>'; }).join('') +
                             '</div>' +
-                            '<div class="barber-social">' +
-                            '<a class="barber-social-insta" href="https://instagram.com/' + insta + '" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>' +
-                            '<a class="barber-social-whats" href="https://wa.me/5512991898466?text=' + whatsMsg + '" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>' +
-                            '</div>' +
                             '<a class="barber-card-btn" href="https://wa.me/5512991898466?text=' + whatsMsg + '" target="_blank" rel="noopener">' +
-                            '<i class="fas fa-calendar-alt"></i> Agendar' +
+                            '<i class="fas fa-calendar-check"></i> Agendar' +
                             '</a>' +
                             '</div>' +
                             '</article>';
                     }).join('');
+                    
+                    // Adicionar clique para expandir/recorrer bio
+                    document.querySelectorAll('.barber-card-bio').forEach(function(bio) {
+                        bio.classList.add('expandable-desc');
+                        bio.dataset.expanded = 'false';
+                        bio.onclick = function() {
+                            var card = this.closest('.barber-card');
+                            var isExpanded = this.dataset.expanded === 'true';
+                            this.dataset.expanded = !isExpanded;
+                            card.classList.toggle('expanded', !isExpanded);
+                        };
+                    });
                 })
                 .catch(function () {
                     grid.innerHTML = '<div class="team-empty">Falha ao carregar profissionais.</div>';
@@ -131,11 +138,19 @@
                             '<img src="/' + escHtml(item.image_path) + '" alt="' + escHtml(item.title) + '" loading="lazy">' +
                             '<div class="highlight-card-body">' +
                             '<h3>' + escHtml(item.title) + '</h3>' +
-                            '<p>' + escHtml(item.description) + '</p>' +
+                            '<p data-expanded="false">' + escHtml(item.description) + '</p>' +
                             '<a class="btn btn-primary" href="' + escHtml(link) + '">Ver Mais</a>' +
                             '</div>' +
                             '</article>';
                     }).join('');
+                    
+                    // Adicionar clique para expandir descrições dos highlights
+                    document.querySelectorAll('.highlight-card-body p').forEach(function(el) {
+                        el.onclick = function() {
+                            var isExpanded = this.dataset.expanded === 'true';
+                            this.dataset.expanded = !isExpanded;
+                        };
+                    });
                 })
                 .catch(function () {
                     // Mantém os cards padrão em caso de erro

@@ -31,7 +31,7 @@
         article.innerHTML =
             imgTag +
             '<h4>' + escHtml(item.title) + '</h4>' +
-            '<p>' + escHtml(item.description) + '</p>' +
+            '<p class="expandable-desc" data-expanded="false">' + escHtml(item.description) + '</p>' +
             '<div class="card-actions">' +
                 '<a class="btn btn-whatsapp" href="' + escHtml(waUrl) + '" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>' +
                 '<a class="btn btn-primary" href="' + escHtml(BOOKING_APP) + '" target="_blank" rel="noopener"><i class="fas fa-calendar-check"></i> Agendar</a>' +
@@ -49,7 +49,7 @@
         article.innerHTML =
             imgTag +
             '<h4>' + escHtml(item.title) + '</h4>' +
-            '<p>' + escHtml(item.description) + '</p>' +
+            '<p class="expandable-desc" data-expanded="false">' + escHtml(item.description) + '</p>' +
             '<a class="btn btn-whatsapp" href="' + escHtml(waUrl) + '" target="_blank" rel="noopener">Consultar Produto</a>';
         return article;
     }
@@ -136,6 +136,31 @@
         document.addEventListener('DOMContentLoaded', load);
     } else {
         load();
+    }
+
+    // Adicionar clique para expandir descrições
+    function initExpandable() {
+        document.querySelectorAll('.expandable-desc').forEach(function(el) {
+            if (!el.dataset.expanded) {
+                el.dataset.expanded = 'false';
+            }
+            el.onclick = function() {
+                var isExpanded = this.dataset.expanded === 'true';
+                this.dataset.expanded = !isExpanded;
+            };
+        });
+    }
+
+    // Inicializar após carregar os itens
+    var originalInject = injectIntoExistingGrid;
+    injectIntoExistingGrid = function(category, items) {
+        originalInject(category, items);
+        setTimeout(initExpandable, 100);
+    };
+
+    // Também inicializar para elementos já existentes
+    if (document.readyState === 'complete') {
+        initExpandable();
     }
 
 }());

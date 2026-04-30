@@ -38,7 +38,7 @@
             subcatBadge +
             '<div class="promo-card-body">' +
                 '<h4>' + escHtml(item.title) + '</h4>' +
-                '<p>' + escHtml(item.description) + '</p>' +
+                '<p class="expandable-desc" data-expanded="false">' + escHtml(item.description) + '</p>' +
                 '<a class="btn btn-whatsapp" href="' + escHtml(waUrl) + '" target="_blank" rel="noopener">' +
                     '<i class="fab fa-whatsapp"></i> Aproveitar Promoção' +
                 '</a>' +
@@ -68,6 +68,31 @@
         document.addEventListener('DOMContentLoaded', load);
     } else {
         load();
+    }
+
+    // Adicionar clique para expandir descrições
+    function initExpandable() {
+        document.querySelectorAll('.expandable-desc').forEach(function(el) {
+            if (!el.dataset.expanded) {
+                el.dataset.expanded = 'false';
+            }
+            el.onclick = function() {
+                var isExpanded = this.dataset.expanded === 'true';
+                this.dataset.expanded = !isExpanded;
+            };
+        });
+    }
+
+    // Inicializar após carregar os itens
+    var originalLoad = load;
+    load = function() {
+        originalLoad();
+        setTimeout(initExpandable, 100);
+    };
+
+    // Também inicializar para elementos já existentes
+    if (document.readyState === 'complete') {
+        initExpandable();
     }
 
 }());
