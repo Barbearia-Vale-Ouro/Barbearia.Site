@@ -15,6 +15,48 @@
     --container: 1180px;
 }
 
+/* ── Descrição Expansível Genérica ──────────────────────────────── */
+.expandable-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-bottom: 1.8rem;
+}
+
+.expandable-desc::after {
+    content: 'Clique para ver mais';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 0.75rem;
+    color: var(--color-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 1;
+    background: var(--color-bg);
+    padding: 0.4rem 0;
+    width: 100%;
+    border-top: 1px dashed var(--color-accent);
+}
+
+.expandable-desc:hover::after {
+    background: linear-gradient(90deg, transparent, rgba(201, 161, 58, 0.1), transparent);
+}
+
+.expandable-desc[data-expanded="true"] {
+    -webkit-line-clamp: unset;
+    display: block;
+}
+
+.expandable-desc[data-expanded="true"]::after {
+    content: 'Clique para recolher';
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -392,8 +434,9 @@ main {
 
 .highlight-card img {
     width: 100%;
-    height: 200px;
+    height: 280px;
     object-fit: cover;
+    object-position: center;
     display: block;
     transition: transform 0.4s ease;
 }
@@ -436,6 +479,44 @@ main {
     font-size: 0.9rem;
     line-height: 1.5;
     flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-bottom: 1.8rem;
+}
+
+.highlight-card-body p::after {
+    content: 'Clique para ver mais';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 0.75rem;
+    color: var(--color-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 1;
+    background: #fff;
+    padding: 0.4rem 0;
+    width: 100%;
+    border-top: 1px dashed var(--color-accent);
+}
+
+.highlight-card-body p:hover::after {
+    background: linear-gradient(90deg, transparent, rgba(201, 161, 58, 0.1), transparent);
+}
+
+.highlight-card-body p[data-expanded="true"] {
+    -webkit-line-clamp: unset;
+    display: block;
+}
+
+.highlight-card-body p[data-expanded="true"]::after {
+    content: 'Clique para recolher';
 }
 
 .highlight-card-body .btn {
