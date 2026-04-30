@@ -711,12 +711,16 @@ pool.getConnection()
     .then(conn => {
         conn.release();
         console.log('✅ MySQL conectado com sucesso.');
+
         app.listen(PORT, () => {
-            console.log('🚀 Servidor rodando em http://localhost:' + PORT);
+            console.log('🚀 Servidor rodando na porta ' + PORT);
         });
     })
     .catch(err => {
-        console.error('❌ Falha ao conectar ao MySQL:', err.message);
-        console.error('   Verifique as credenciais no arquivo .env');
-        process.exit(1);
+        console.error('❌ ERRO MYSQL:', err);
+
+        // NÃO derruba o servidor
+        app.listen(PORT, () => {
+            console.log('⚠️ Servidor rodando SEM banco');
+        });
     });
